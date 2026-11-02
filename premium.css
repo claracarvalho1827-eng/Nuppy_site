@@ -37,8 +37,6 @@ body.hc .btn::before{display:none}
 body.hc .wordmark span{background:none;color:var(--wm);filter:none}
 @keyframes sheen{50%{background-position:100% 0}}
 .blob{box-shadow:var(--shadow-lift)}
-.stage::after{content:"";position:absolute;inset:8% 4% -6% 8%;border-radius:50%;border:1.5px dashed color-mix(in srgb,var(--ink) 25%,transparent);animation:spin 40s linear infinite;pointer-events:none}
-@keyframes spin{to{transform:rotate(360deg)}}
 
 /* marquee mais rico */
 .marquee{box-shadow:0 20px 40px -24px #5b351f80}
@@ -94,10 +92,9 @@ body:not(.hc){
 body:not(.hc) .hero{background:radial-gradient(40rem 30rem at 90% 0%,var(--sky-l),transparent 60%),radial-gradient(36rem 30rem at 0% 100%,var(--soft),transparent 60%),var(--sand)}
 body:not(.hc) .hero::before{background:radial-gradient(26rem 26rem at var(--px,70%) var(--py,30%),#ffffffaa,transparent 70%)}
 .stage{aspect-ratio:5 / 4;max-width:35rem}
-.stage::after{content:none}
 .brand-art{position:absolute;inset:8% 0 9%;display:grid;place-items:center;isolation:isolate}
 .brand-art::before{content:"";position:absolute;inset:12% 1% 8% 7%;z-index:-1;background:linear-gradient(135deg,var(--sky-l),var(--soft-l));clip-path:polygon(10% 0,100% 13%,88% 100%,0 84%);transform:rotate(-3deg)}
-.brand-art img{width:112%;height:100%;object-fit:contain;filter:drop-shadow(0 1.3rem 1.2rem #5b351f30);animation:brand-float 5s ease-in-out infinite alternate}
+.brand-art img{width:124%;height:100%;object-fit:contain;filter:drop-shadow(0 1.3rem 1.2rem #5b351f30);animation:brand-float 5s ease-in-out infinite alternate}
 @keyframes brand-float{to{transform:translateY(-.55rem) rotate(1deg)}}
 .m-bird{width:21%;right:-2%;top:-7%}
 body.hc .brand-art::before{background:#000;border:1px solid #fff}

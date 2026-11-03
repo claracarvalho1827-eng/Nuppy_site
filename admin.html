@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel administrador — Nuppy</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#EAF4FB">
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="a11y.css">
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- Enquanto confirma o acesso, nada do painel aparece -->
+  <p id="verificando" class="loading" role="status">Verificando acesso…</p>
+
+  <div class="app" id="app" hidden>
+    <aside class="side">
+      <div class="brand">Nuppy.<small>Administrador</small></div>
+
+      <nav aria-label="Seções do painel">
+        <a href="#solicitacoes" data-v="solicitacoes">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
+          Solicitações <span class="badge" id="b-sol" hidden>0</span>
+        </a>
+        <a href="#reclamacoes" data-v="reclamacoes">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg>
+          Reclamações <span class="badge" id="b-rec" hidden>0</span>
+        </a>
+        <a href="#configuracoes" data-v="configuracoes">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          Configurações
+        </a>
+      </nav>
+
+      <div class="bottom">
+        <span>Conectado como</span>
+        <strong id="quem"></strong>
+        <button class="btn soft sm" type="button" id="sair">Sair</button>
+      </div>
+    </aside>
+
+    <main id="conteudo" class="main" tabindex="-1">
+
+      <!-- 1. SOLICITAÇÕES DE PARCERIA -->
+      <section id="solicitacoes" class="view" aria-labelledby="h-sol" hidden>
+        <header>
+          <h2 id="h-sol" tabindex="-1">Solicitações de parceria</h2>
+          <p>Dados enviados pelas empresas no formulário do site. Ao aceitar, a empresa vai para a tabela de estabelecimentos. Ao recusar, os dados são excluídos de forma definitiva.</p>
+        </header>
+        <div class="stack" id="lista-sol"></div>
+      </section>
+
+      <!-- 2. RECLAMAÇÕES DO APLICATIVO -->
+      <section id="reclamacoes" class="view" aria-labelledby="h-rec" hidden>
+        <header>
+          <h2 id="h-rec" tabindex="-1">Reclamações do aplicativo</h2>
+          <p>Reclamações enviadas por quem usa o aplicativo. Ao marcar como resolvida, ela sai desta lista.</p>
+        </header>
+        <div class="stack" id="lista-rec"></div>
+      </section>
+
+      <!-- 3. CONFIGURAÇÕES -->
+      <section id="configuracoes" class="view" aria-labelledby="h-cfg" hidden>
+        <header>
+          <h2 id="h-cfg" tabindex="-1">Configurações</h2>
+          <p>Dados da sua conta de administrador.</p>
+        </header>
+
+        <div class="stack">
+          <form class="card section-card" id="f-perfil" novalidate>
+            <h3>Perfil</h3>
+            <div class="field">
+              <label for="c-email">E-mail de acesso</label>
+              <input id="c-email" readonly>
+              <p class="hint">Para trocar o e-mail, peça a quem administra o banco de dados.</p>
+            </div>
+            <div class="field">
+              <label for="c-nome">Nome de exibição</label>
+              <input id="c-nome" maxlength="80" autocomplete="name">
+            </div>
+            <button class="btn primary" type="submit">Salvar nome</button>
+            <div class="msg" id="s-perfil" role="status" aria-live="polite" hidden></div>
+          </form>
+
+          <form class="card section-card" id="f-senha" novalidate>
+            <h3>Alterar senha</h3>
+            <div class="field">
+              <label for="c-nova">Nova senha</label>
+              <input id="c-nova" type="password" autocomplete="new-password" minlength="8" maxlength="128">
+              <p class="hint">Use pelo menos 8 caracteres.</p>
+            </div>
+            <div class="field">
+              <label for="c-conf">Confirmar nova senha</label>
+              <input id="c-conf" type="password" autocomplete="new-password" maxlength="128">
+            </div>
+            <button class="btn primary" type="submit">Alterar senha</button>
+            <div class="msg" id="s-senha" role="status" aria-live="polite" hidden></div>
+          </form>
+
+          <div class="card section-card">
+            <h3>Sessão</h3>
+            <p class="hint" style="margin:0 0 1rem">Encerre a sessão ao usar um computador compartilhado.</p>
+            <button class="btn danger" type="button" id="sair2">Sair da conta</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Confirmação de exclusão -->
+  <dialog id="dlg" aria-labelledby="dlg-t">
+    <h3 id="dlg-t">Recusar solicitação?</h3>
+    <p id="dlg-p">Os dados desta empresa serão excluídos e não poderão ser recuperados.</p>
+    <div class="actions">
+      <button class="btn soft sm" type="button" id="dlg-no">Cancelar</button>
+      <button class="btn danger sm" type="button" id="dlg-yes">Excluir dados</button>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="supabase-config.js"></script>
+  <script src="admin-core.js"></script>
+  <script src="a11y.js" defer></script>
+  <script src="admin.js"></script>
+</body>
+</html>

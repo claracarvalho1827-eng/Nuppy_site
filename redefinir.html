@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nova senha — Nuppy</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#5B351F">
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="a11y.css">
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <div class="bg" aria-hidden="true"></div>
+
+  <main id="conteudo" class="wrap">
+    <div class="col">
+      <section class="box" aria-labelledby="h-red">
+        <img class="logo" src="img/logo.png" alt="Nuppy" width="666" height="375">
+        <h1 id="h-red">Criar nova senha</h1>
+        <p class="sub" id="sub">Validando o link…</p>
+
+        <form id="fn" novalidate hidden>
+          <div class="field">
+            <label for="nova">Nova senha</label>
+            <div class="in">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+              <input id="nova" type="password" autocomplete="new-password" minlength="8" maxlength="128" placeholder="Pelo menos 8 caracteres">
+            </div>
+          </div>
+          <div class="field">
+            <label for="conf">Confirmar nova senha</label>
+            <div class="in">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+              <input id="conf" type="password" autocomplete="new-password" maxlength="128" placeholder="Repita a senha">
+            </div>
+          </div>
+          <button class="go" type="submit" id="salvar">Salvar nova senha</button>
+        </form>
+
+        <div id="status" role="status" aria-live="polite" tabindex="-1" hidden></div>
+        <p class="foot"><a class="link" href="/entrar">Ir para o login</a></p>
+      </section>
+    </div>
+  </main>
+
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="supabase-config.js"></script>
+  <script src="admin-core.js"></script>
+  <script src="a11y.js" defer></script>
+  <script>
+  (() => {
+    "use strict";
+    const $ = (s) => document.querySelector(s);
+    const form = $("#fn"), status = $("#status");
+    let liberado = false;
+    const msg = (t, c) => { status.hidden = false; status.className = "msg " + c; status.textContent = t; status.focus(); };
+
+    if (!Nuppy.configurado) { $("#sub").textContent = "Configuração do Supabase ausente."; return; }
+
+    // O link do e-mail traz a sessão de recuperação; o Supabase dispara este evento ao lê-la
+    Nuppy.db.auth.onAuthStateChange((evento) => {
+      if (evento === "PASSWORD_RECOVERY") {
+        liberado = true; form.hidden = false; $("#sub").textContent = "Escolha uma senha nova para a sua conta.";
+        $("#nova").focus();
+      }
+    });
+    setTimeout(() => {
+      if (!liberado) { $("#sub").textContent = "Link inválido ou expirado."; msg("Peça um novo link na tela de login, em “Perdeu sua senha?”.", "bad"); }
+    }, 3000);
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const nova = $("#nova").value, conf = $("#conf").value, b = $("#salvar");
+      if (nova.length < 8) { msg("A senha precisa ter pelo menos 8 caracteres.", "bad"); $("#nova").focus(); return; }
+      if (nova !== conf) { msg("As senhas não são iguais.", "bad"); $("#conf").focus(); return; }
+      b.disabled = true;
+      const { error } = await Nuppy.db.auth.updateUser({ password: nova });
+      b.disabled = false;
+      if (error) { msg("Não foi possível salvar a senha. Peça um novo link e tente de novo.", "bad"); return; }
+      await Nuppy.db.auth.signOut();
+      form.hidden = true; $("#sub").textContent = "Pronto!";
+      msg("Senha alterada. Agora você já pode entrar com a nova senha.", "ok");
+    });
+  })();
+  </script>
+</body>
+</html>

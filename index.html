@@ -1,0 +1,2771 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ============================================================
+       SEO E COMPARTILHAMENTO
+       ============================================================ -->
+  <title>Nuppy — o universo pet conectado</title>
+  <meta name="description" content="A Nuppy aproxima tutores, empresas, serviços e informações do mercado pet em um só ecossistema. Conheça o projeto e seja nosso parceiro.">
+
+  <!-- Open Graph: texto e tipo usados quando o link é compartilhado (WhatsApp, redes sociais) -->
+  <meta property="og:title" content="Nuppy — o universo pet conectado">
+  <meta property="og:description" content="Tutores, empresas, serviços e informações do mercado pet em um só lugar.">
+  <meta property="og:type" content="website">
+
+  <!-- Cor da barra do navegador no celular -->
+  <meta name="theme-color" content="#F2EFEA">
+
+  <!-- Favicon desenhado em SVG dentro do próprio link (não precisa de arquivo de imagem) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23DBA262'/%3E%3Ctext x='32' y='46' font-size='40' font-family='Georgia' font-weight='700' text-anchor='middle' fill='%235B351F'%3EN%3C/text%3E%3C/svg%3E">
+
+  <!-- Fonte DM Sans (Google Fonts). O preconnect acelera a conexão com o servidor das fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
+
+
+  <style>
+    /* ==============================================================
+       ÍNDICE DO CSS
+       1.  Variáveis (cores, fontes, medidas)
+       2.  Modos de acessibilidade (alto contraste, dislexia etc.)
+       3.  Base (reset, body, títulos, links, foco)
+       4.  Componentes reutilizáveis (chip, kicker, botão, barra de progresso)
+       5.  Cabeçalho e menu
+       6.  Fotos e efeito de revelação
+       7.  Hero (primeira tela)
+       8.  Faixa de palavras (marquee)
+       9.  Animações de texto e revelação ao rolar
+       10. Seção Objetivo
+       11. Galeria de mascotes
+       12. Seção Pilares (cards)
+       13. Seção Parcerias (abas e passos)
+       14. Responsivo (celular)
+       15. FAQ
+       16. Formulário
+       17. Rodapé
+       18. Barra de acessibilidade lateral
+       19. Movimento reduzido
+       20. Mascotes e ajustes de imagem
+       21. Refinamento visual (sobrescreve regras acima)
+       22. Utilitários
+       ============================================================== */
+
+
+    /* ==============================================================
+       1. VARIÁVEIS
+       Todas as cores e medidas do site ficam aqui. Para mudar o
+       visual inteiro, basta alterar estes valores.
+       ============================================================== */
+    :root {
+      /* Cores de fundo */
+      --bg: #F2EFEA;        /* fundo principal da página */
+      --sand: #f5f0e5;      /* fundo bege claro das seções */
+      --soft: #ECD2A9;      /* bege mais escuro */
+      --surface: #FFFDF9;   /* fundo de cartões e formulário */
+
+      /* Cores de texto e destaque */
+      --ink: #5B351F;        /* cor do texto (marrom) */
+      --line: #D9CBB8;       /* cor das bordas finas */
+      --accent: #DBA262;     /* laranja/dourado dos botões */
+      --accent-ink: #602f13; /* cor do texto sobre o destaque */
+      --link: #9A572C;       /* cor dos links */
+      --sky: #A9D6F2;        /* azul claro */
+      --azul: #4FA3D9;       /* azul do foco do teclado */
+      --mark: #ECD2A9;      /* cor de marca-texto */
+      --wm: #9A7257;         /* cor da marca "Nuppy" grande */
+
+      /* Fontes */
+      --display: Georgia, "Times New Roman", serif;
+      --sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+      /* Altura do cabeçalho fixo (usada para o scroll não esconder títulos) */
+      --header-h: 4.25rem;
+    }
+
+
+    /* ==============================================================
+       2. MODOS DE ACESSIBILIDADE
+       Estas classes são adicionadas ao <body> pelos botões da barra
+       lateral (arquivo a11y.js).
+       ============================================================== */
+
+    /* Alto contraste: fundo preto, texto branco, destaque amarelo */
+    body.hc {
+      --bg: #000;
+      --sand: #000;
+      --soft: #000;
+      --ink: #fff;
+      --surface: #000;
+      --line: #fff;
+      --accent: #ffe600;
+      --accent-ink: #000;
+      --link: #ffe600;
+      --sky: #000;
+      --mark: #ffe600;
+      --wm: #fff;
+    }
+
+    /* Fonte para dislexia: Verdana com mais espaço entre letras e palavras */
+    body.dys {
+      font-family: Verdana, sans-serif;
+      letter-spacing: .04em;
+      word-spacing: .12em;
+    }
+
+    /* Espaçamento maior entre linhas e parágrafos */
+    body.sp {
+      line-height: 2.1;
+    }
+
+    body.sp p {
+      margin-bottom: 1.6em;
+    }
+
+    /* Links destacados: sublinhado grosso e fundo de marca-texto */
+    body.links a {
+      text-decoration: underline;
+      text-decoration-thickness: 3px;
+      background: var(--mark);
+      color: #000;
+      padding: 0 .15em;
+    }
+
+    /* Ocultar imagens */
+    body.noimg .ph img,
+    body.noimg .stage img {
+      display: none !important;
+    }
+
+
+    /* ==============================================================
+       3. BASE
+       ============================================================== */
+
+    /* Remove o problema de tamanho de caixas: padding não aumenta a largura */
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 100%;                       /* respeita o tamanho de fonte do usuário */
+      scroll-behavior: smooth;               /* rolagem suave ao clicar em âncoras */
+      scroll-padding-top: var(--header-h);   /* evita o cabeçalho cobrir o título */
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 400 1.0625rem/1.7 var(--sans);
+      overflow-x: hidden;                    /* impede rolagem horizontal indesejada */
+    }
+
+    /* Títulos */
+    h1,
+    h2,
+    h3 {
+      font-family: var(--sans);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -.03em;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: clamp(2.2rem, 6vw, 4.2rem);  /* clamp = mínimo, ideal, máximo */
+      margin-bottom: 1.25rem;
+    }
+
+    a {
+      color: var(--link);
+    }
+
+    /* Contorno azul visível ao navegar pelo teclado (Tab) */
+    :focus-visible {
+      outline: 3px solid var(--azul);
+      outline-offset: 3px;
+    }
+
+    body.hc :focus-visible {
+      outline-color: #fff;
+    }
+
+    /* Link "Pular para o conteúdo": escondido até receber foco do teclado */
+    .skip {
+      position: absolute;
+      left: -999px;
+      top: 0;
+      background: var(--ink);
+      color: var(--bg);
+      padding: .75rem 1rem;
+      z-index: 100;
+    }
+
+    .skip:focus {
+      left: 0;
+    }
+
+    section {
+      scroll-margin-top: var(--header-h);
+      position: relative;
+    }
+
+    /* Container central que limita a largura do conteúdo */
+    .wrap {
+      max-width: 74rem;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+
+    /* ==============================================================
+       4. COMPONENTES REUTILIZÁVEIS
+       ============================================================== */
+
+    /* "Etiqueta" pequena (ex.: "Em desenvolvimento") */
+    .chip {
+      display: inline-block;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .2rem .7rem;
+      border-radius: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+
+    /* Texto pequeno acima dos títulos (ex.: "01 · Nosso objetivo") */
+    .kicker {
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: .85rem;
+      color: var(--link);
+      margin: 0 0 .75rem;
+    }
+
+    /* Barra fina no topo que mostra o quanto da página foi rolado */
+    #prog {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 100%;
+      background: var(--accent);
+      transform-origin: 0 50%;
+      transform: scaleX(0);       /* começa vazia; o JS aumenta ao rolar */
+      z-index: 70;
+    }
+
+    /* Botões */
+    .btn {
+      display: inline-block;
+      padding: .9rem 1.8rem;
+      border-radius: 3rem;
+      font: 700 1rem var(--sans);
+      text-decoration: none;
+      min-height: 44px;           /* tamanho mínimo de toque recomendado */
+      border: 2px solid var(--ink);
+      color: var(--ink);
+      background: none;
+      cursor: pointer;
+      transition: transform .2s, background .3s;
+      will-change: transform;
+    }
+
+    .btn:hover {
+      background: var(--soft);
+    }
+
+    /* Botão principal (preenchido) */
+    .btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--accent-ink);
+    }
+
+    .btn.primary:hover {
+      background: var(--soft);
+      border-color: var(--soft);
+    }
+
+
+    /* ==============================================================
+       5. CABEÇALHO E MENU
+       ============================================================== */
+
+    /* Cabeçalho fixo no topo com fundo translúcido e desfoque */
+    header.top {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: var(--header-h);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    body.hc header.top {
+      background: #000;
+    }
+
+    .top .wrap {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    /* Logo "Nuppy" em texto */
+    .logo {
+      font: 700 1.7rem var(--display);
+      color: var(--ink);
+      text-decoration: none;
+      background: none !important;
+      padding: 0 !important;
+    }
+
+    /* Lista de links do menu */
+    nav ul {
+      display: flex;
+      gap: .4rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: .6rem 1rem;
+      border-radius: 2rem;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 500;
+      min-height: 44px;
+      transition: background .25s;
+    }
+
+    /* Link da seção atual (aria-current) e hover ficam com fundo bege */
+    nav a:hover,
+    nav a[aria-current="true"] {
+      background: var(--soft);
+    }
+
+    body.hc nav a:hover {
+      outline: 2px solid #fff;
+    }
+
+    /* Botão "Entrar" */
+    nav a.btn-enter {
+      background: var(--accent);
+      color: var(--accent-ink);
+      padding: .6rem 1.5rem;
+      font-weight: 700;
+    }
+
+    /* Botão "Menu" (só aparece no celular — ver seção 14) */
+    .menu-toggle {
+      display: none;
+      min-height: 44px;
+      min-width: 44px;
+      border: 2px solid var(--ink);
+      background: none;
+      color: var(--ink);
+      border-radius: .6rem;
+      font: 500 1rem var(--sans);
+      padding: 0 .9rem;
+      cursor: pointer;
+    }
+
+    /* No celular o menu vira uma lista suspensa */
+    @media (max-width: 52rem) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav ul {
+        display: none;                          /* escondido até clicar em "Menu" */
+        position: absolute;
+        right: 1rem;
+        top: calc(var(--header-h) - .25rem);
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        padding: .5rem;
+        min-width: 12rem;
+        box-shadow: 0 8px 24px #0002;
+      }
+
+      nav ul.open {
+        display: flex;                          /* classe "open" é colocada pelo JS */
+      }
+    }
+
+
+    /* ==============================================================
+       6. FOTOS E EFEITO DE REVELAÇÃO
+       ============================================================== */
+
+    /* Moldura de foto com cantos arredondados */
+    .ph {
+      position: relative;
+      overflow: hidden;
+      background: var(--soft);
+      border-radius: 2rem;
+    }
+
+    .ph img,
+    .stage img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;          /* a imagem preenche sem distorcer */
+      display: block;
+    }
+
+    /* Efeito "clip": a foto começa recortada e se abre ao aparecer na tela.
+       Só funciona quando o JS está ativo (classe .js no body). */
+    .js .clip {
+      clip-path: inset(14% 10% 14% 10% round 2rem);
+      transition: clip-path 1.1s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .js .clip img {
+      transform: scale(1.25);
+      transition: transform 1.4s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .js .clip.in {
+      clip-path: inset(0 round 2rem);
+    }
+
+    .js .clip.in img {
+      transform: none;
+    }
+
+
+    /* ==============================================================
+       7. HERO (primeira tela)
+       ============================================================== */
+    .hero {
+      min-height: calc(100svh - var(--header-h));
+      display: grid;
+      align-items: center;
+      padding: 2rem 0 5rem;
+      overflow: hidden;
+      background: var(--sand);
+    }
+
+    /* Foco de luz que segue o mouse (posição vem das variáveis --px e --py) */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(28rem 28rem at var(--px, 70%) var(--py, 30%), #ECD2A9aa, transparent 70%);
+      pointer-events: none;
+    }
+
+    body.hc .hero::before {
+      display: none;
+    }
+
+    /* Duas colunas: texto à esquerda, imagens à direita */
+    .hero .wrap {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 2rem;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Palavra "Nuppy" gigante, letra por letra */
+    .wordmark {
+      font: 700 clamp(4.5rem, 19vw, 13rem)/.85 var(--display);
+      letter-spacing: -.03em;
+      margin: .05em 0;
+      display: flex;
+      color: var(--wm);
+    }
+
+    .wordmark span {
+      display: inline-block;
+      transition: transform .3s;
+    }
+
+    /* Cada letra "pula" ao passar o mouse */
+    .wordmark span:hover {
+      transform: translateY(-.08em) rotate(-4deg);
+    }
+
+    /* Animação de entrada: cada letra sobe com um pequeno atraso (--i = posição) */
+    .js .wordmark span {
+      animation: rise .9s cubic-bezier(.2, .8, .2, 1) both;
+      animation-delay: calc(var(--i) * 70ms);
+    }
+
+    @keyframes rise {
+      from {
+        transform: translateY(60%) rotate(5deg);
+        opacity: 0;
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+      font-weight: 500;
+      max-width: 26ch;
+      letter-spacing: -.02em;
+      margin: 0 0 1rem;
+    }
+
+    .hero .lead {
+      max-width: 50ch;
+      margin: 0 0 1.75rem;
+    }
+
+    /* Linha dos dois botões do hero */
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
+    /* "Palco" das imagens do hero (quadrado, com efeito 3D leve) */
+    .stage {
+      position: relative;
+      aspect-ratio: 1;
+      max-width: 30rem;
+      width: 100%;
+      justify-self: center;
+      perspective: 900px;
+    }
+
+    /* Formas orgânicas coloridas que "respiram" */
+    .blob {
+      position: absolute;
+      background: var(--soft);
+      border-radius: 58% 42% 55% 45% / 48% 56% 44% 52%;
+      animation: morph 11s ease-in-out infinite alternate;
+      overflow: hidden;
+    }
+
+    .blob.b1 {
+      inset: 0 12% 22% 0;
+      background: var(--accent);
+    }
+
+    .blob.b2 {
+      inset: 30% 0 0 34%;
+      background: var(--sky);
+      animation-delay: -5s;
+    }
+
+    .blob.b3 {
+      inset: -6% -6% auto auto;
+      width: 34%;
+      aspect-ratio: 1;
+      background: var(--soft);
+      animation-delay: -8s;
+    }
+
+    @keyframes morph {
+      to {
+        border-radius: 42% 58% 45% 55% / 56% 44% 56% 44%;
+      }
+    }
+
+    /* Camada que inclina conforme o mouse (variáveis --mx e --my vêm do JS) */
+    .tilt {
+      position: absolute;
+      inset: 0;
+      transition: transform .15s;
+      transform: rotateY(calc(var(--mx, 0) * 9deg)) rotateX(calc(var(--my, 0) * -9deg));
+    }
+
+
+    /* ==============================================================
+       8. FAIXA DE PALAVRAS (MARQUEE)
+       Faixa que desliza continuamente com as palavras-chave.
+       ============================================================== */
+    .marquee {
+      background: var(--accent);
+      color: var(--accent-ink);
+      overflow: hidden;
+      white-space: nowrap;
+      transform: rotate(-1.2deg);
+      margin: -1.5rem -1rem 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .marquee div {
+      display: inline-block;
+      padding: .9rem 0;
+      font: 700 1.4rem var(--sans);
+      animation: slide 32s linear infinite;
+    }
+
+    /* Bolinha entre as palavras */
+    .marquee span::after {
+      content: "";
+      display: inline-block;
+      width: .5rem;
+      height: .5rem;
+      border-radius: 50%;
+      background: currentColor;
+      margin: 0 2rem;
+      vertical-align: middle;
+    }
+
+    /* A lista de palavras está duplicada no HTML; deslizar 50% cria o efeito de loop infinito */
+    @keyframes slide {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+
+    /* ==============================================================
+       9. ANIMAÇÕES DE TEXTO E REVELAÇÃO AO ROLAR
+       ============================================================== */
+
+    /* .fx: títulos que aparecem palavra por palavra.
+       O JS envolve cada palavra em <span class="w"><span>…</span></span> */
+    .js .fx .w {
+      display: inline-block;
+      overflow: hidden;           /* esconde a palavra enquanto ela está "embaixo" */
+      vertical-align: top;
+      padding-bottom: .12em;
+    }
+
+    .js .fx .w > span {
+      display: inline-block;
+      transform: translateY(110%);
+    }
+
+    .js .fx.in .w > span {
+      transform: none;
+      transition: transform .9s cubic-bezier(.2, .8, .2, 1);
+      transition-delay: calc(var(--k) * 55ms);   /* --k = número da palavra */
+    }
+
+    /* .reveal: elementos que surgem subindo e ficando visíveis */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .8s, transform .8s;
+      transition-delay: var(--d, 0s);            /* atraso opcional definido no HTML */
+    }
+
+    .js .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+
+    /* ==============================================================
+       10. SEÇÃO OBJETIVO
+       ============================================================== */
+    .objetivo {
+      padding: 8rem 0 5rem;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    /* Trecho com marca-texto em <em> */
+    .objetivo em {
+      font-style: normal;
+      background: linear-gradient(transparent 62%, var(--mark) 0);
+    }
+
+    .objetivo p {
+      max-width: 56ch;
+    }
+
+    .intro .ph {
+      aspect-ratio: 4 / 5;
+    }
+
+    /* Três cartões de "problemas" */
+    .pains {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 4rem;
+    }
+
+    .pain {
+      padding: 1.6rem;
+      border-radius: 1.5rem;
+      transition: transform .4s;
+    }
+
+    .pain:hover {
+      transform: translateY(-8px) !important;
+    }
+
+    /* Cada cartão com cor e inclinação diferentes (depois sobrescrito na seção 21) */
+    .pain:nth-child(1) {
+      background: var(--soft);
+      transform: rotate(-1.5deg);
+    }
+
+    .pain:nth-child(2) {
+      background: var(--sky);
+      transform: translateY(1.2rem);
+    }
+
+    .pain:nth-child(3) {
+      background: var(--sand);
+      transform: rotate(1.5deg);
+    }
+
+    body.hc .pain {
+      border: 2px solid #fff;
+    }
+
+    .pain .n {
+      font: 700 3.5rem var(--sans);
+      opacity: .4;
+      line-height: 1;
+    }
+
+    .pain h3 {
+      margin: .3rem 0 .4rem;
+      font-size: 1.5rem;
+    }
+
+
+    /* ==============================================================
+       11. GALERIA DE MASCOTES
+       Duas fileiras que andam para lados opostos conforme a rolagem.
+       ============================================================== */
+    .band {
+      padding: 3rem 0;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .row {
+      display: flex;
+      gap: 1rem;
+      width: max-content;         /* a fileira é mais larga que a tela */
+      will-change: transform;
+      margin: .5rem 0;
+    }
+
+    .row .ph {
+      width: clamp(14rem, 24vw, 22rem);
+      aspect-ratio: 3 / 2;
+      flex: none;
+      border-radius: 1.5rem;
+    }
+
+
+    /* ==============================================================
+       12. SEÇÃO PILARES (cards "bento")
+       ============================================================== */
+    .pilares {
+      background: var(--sand);
+      padding: 3rem 0 6rem;
+      margin-top: 4rem;
+    }
+
+    /* Onda decorativa no topo (escondida na seção 21) */
+    .pilares > .wave {
+      position: absolute;
+      left: 0;
+      top: -3.9rem;
+      width: 100%;
+      height: 4rem;
+      fill: var(--sand);
+    }
+
+    /* Grade de 6 colunas: os cartões ocupam 3+3 e depois 4+2 */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1.1rem;
+      margin-top: 2rem;
+    }
+
+    /* Cartão com leve inclinação 3D seguindo o mouse (--tx e --ty vêm do JS) */
+    .tile {
+      border-radius: 1.6rem;
+      padding: 1.8rem;
+      transition: transform .2s;
+      transform: perspective(800px) rotateX(calc(var(--ty, 0) * -6deg)) rotateY(calc(var(--tx, 0) * 6deg));
+    }
+
+    .tile h3 {
+      font-size: 1.7rem;
+      margin: .8rem 0 .5rem;
+    }
+
+    .tile p {
+      max-width: 34ch;
+      margin: 0;
+    }
+
+    .tile:nth-child(1) {
+      grid-column: span 3;
+      background: var(--accent);
+    }
+
+    .tile:nth-child(2) {
+      grid-column: span 3;
+      background: var(--soft);
+    }
+
+    .tile:nth-child(3) {
+      grid-column: span 4;
+      background: var(--sky);
+    }
+
+    .tile:nth-child(4) {
+      grid-column: span 2;
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+
+    body.hc .tile {
+      border: 2px solid #fff;
+    }
+
+
+    /* ==============================================================
+       13. SEÇÃO PARCERIAS (abas e passos)
+       ============================================================== */
+    .parcerias {
+      background: var(--soft);
+      padding: 6rem 0;
+    }
+
+    .parcerias .sub {
+      max-width: 60ch;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Layout das abas: lista de botões à esquerda, conteúdo à direita */
+    .tabs {
+      display: grid;
+      grid-template-columns: 16rem 1fr;
+      gap: 2rem;
+    }
+
+    [role=tablist] {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    [role=tab] {
+      text-align: left;
+      padding: .9rem 1.1rem;
+      border-radius: 1rem;
+      border: 2px solid var(--ink);
+      background: none;
+      color: var(--ink);
+      font: 500 1rem var(--sans);
+      cursor: pointer;
+      min-height: 44px;
+      transition: transform .2s, background .2s;
+    }
+
+    [role=tab]:hover {
+      transform: translateX(5px);
+    }
+
+    /* Aba selecionada fica escura */
+    [role=tab][aria-selected=true] {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    body.hc [role=tab][aria-selected=true] {
+      background: #ffe600;
+      color: #000;
+    }
+
+    [role=tabpanel] {
+      padding: .5rem 0;
+    }
+
+    [role=tabpanel] h3 {
+      font-size: 2rem;
+      margin: 0 0 .75rem;
+    }
+
+    [role=tabpanel] p {
+      max-width: 52rem;
+    }
+
+    /* Lista numerada "Como funciona" (números 01, 02, 03 gerados por CSS) */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin: 3rem 0 0;
+      counter-reset: s;
+      list-style: none;
+      padding: 0;
+    }
+
+    .steps li {
+      counter-increment: s;
+      border-top: 3px solid var(--ink);
+      padding-top: 1rem;
+    }
+
+    .steps li::before {
+      content: "0" counter(s);
+      font: 700 2.6rem var(--sans);
+      opacity: .45;
+      display: block;
+    }
+
+    .steps strong {
+      display: block;
+      font-size: 1.2rem;
+    }
+
+    /* Aviso com barra lateral */
+    .note {
+      font-size: .95rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
+      max-width: 62ch;
+      margin-top: 2.5rem;
+    }
+
+
+    /* ==============================================================
+       14. RESPONSIVO (telas até 52rem ≈ 832px)
+       Todas as grades de várias colunas viram uma coluna só.
+       ============================================================== */
+    @media (max-width: 52rem) {
+      .tabs,
+      .steps,
+      .split,
+      .intro,
+      .pains,
+      .hero .wrap {
+        grid-template-columns: 1fr;
+      }
+
+      [role=tablist] {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .tile:nth-child(n) {
+        grid-column: span 6;
+      }
+
+      .pain:nth-child(n) {
+        transform: none;
+      }
+    }
+
+
+    /* ==============================================================
+       15. FAQ (perguntas frequentes)
+       ============================================================== */
+    .faq {
+      padding: 6rem 0;
+    }
+
+    details {
+      border-bottom: 1px solid var(--line);
+      padding: 1rem 0;
+      max-width: 50rem;
+    }
+
+    summary {
+      cursor: pointer;
+      font: 700 1.25rem var(--sans);
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+
+    details p {
+      margin: .5rem 0 0;
+    }
+
+
+    /* ==============================================================
+       16. FORMULÁRIO
+       ============================================================== */
+    .formulario {
+      padding: 6rem 0 7rem;
+      background: var(--sand);
+    }
+
+    .formulario .head {
+      max-width: 50rem;
+      margin-bottom: 2.5rem;
+    }
+
+    form {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 1.75rem;
+      padding: clamp(1.25rem, 4vw, 2.5rem);
+      display: grid;
+      gap: 1.1rem;
+      box-shadow: 0 20px 50px -20px #5b351f33;
+      max-width: 52rem;
+    }
+
+    /* Linha com dois campos lado a lado */
+    .frow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: .3rem;
+    }
+
+    /* Asterisco de campo obrigatório */
+    .req {
+      color: var(--link);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      font: inherit;
+      padding: .75rem .9rem;
+      border: 2px solid var(--line);
+      border-radius: .8rem;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 44px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--ink);
+      box-shadow: 0 0 0 4px #DBA26255;
+    }
+
+    body.hc input,
+    body.hc select,
+    body.hc textarea {
+      border-color: #fff;
+    }
+
+    textarea {
+      min-height: 7rem;
+      resize: vertical;
+    }
+
+    /* Mensagem de erro embaixo de cada campo */
+    .err {
+      color: #9b1c1c;
+      font-size: .9rem;
+      margin: .25rem 0 0;
+      min-height: 1.2em;
+    }
+
+    body.hc .err {
+      color: #ff8a8a;
+    }
+
+    /* Campo inválido (atributo colocado pelo JS) */
+    [aria-invalid=true] {
+      border-color: #9b1c1c;
+      border-width: 3px;
+    }
+
+    /* Checkbox de consentimento */
+    .check {
+      display: flex;
+      gap: .7rem;
+      align-items: flex-start;
+    }
+
+    .check input {
+      width: 1.4rem;
+      height: 1.4rem;
+      min-height: 0;
+      margin-top: .25rem;
+      flex: none;
+    }
+
+    .check label {
+      font-weight: 400;
+      margin: 0;
+    }
+
+    /* Campo "isca" anti-spam: invisível para pessoas, mas robôs costumam preencher */
+    .hp {
+      position: absolute;
+      left: -9999px;
+    }
+
+    /* Mensagem de sucesso ou erro após enviar */
+    #status {
+      padding: 1rem;
+      border-radius: .8rem;
+      font-weight: 700;
+    }
+
+    #status.ok {
+      background: var(--sky);
+      color: var(--ink);
+    }
+
+    #status.bad {
+      background: #f6d4d4;
+      color: #5b1111;
+    }
+
+    body.hc #status {
+      background: #000;
+      border: 2px solid #fff;
+      color: #fff;
+    }
+
+    /* Botão desativado enquanto envia */
+    button[disabled] {
+      opacity: .6;
+      cursor: progress;
+    }
+
+    @media (max-width: 52rem) {
+      .frow {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    /* ==============================================================
+       17. RODAPÉ
+       ============================================================== */
+    footer {
+      background: var(--soft);
+      padding: 2.5rem 0 1.5rem;
+    }
+
+    footer .big {
+      font: 700 clamp(2.5rem, 7vw, 4.5rem)/1 var(--display);
+      color: var(--wm);
+      margin: 0 0 .75rem;
+    }
+
+    footer ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin: .75rem 0;
+    }
+
+    footer p {
+      margin: .3rem 0;
+    }
+
+    footer small {
+      display: block;
+      opacity: .85;
+    }
+
+
+    /* ==============================================================
+       18. BARRA DE ACESSIBILIDADE LATERAL
+       Os botões são criados pelo arquivo a11y.js.
+       ============================================================== */
+    #rail {
+      position: fixed;
+      right: .5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+      background: var(--surface);
+      padding: .4rem;
+      border-radius: 1rem;
+      border: 2px solid var(--ink);
+      max-height: 92vh;
+      overflow: auto;
+    }
+
+    #rail button {
+      width: 46px;
+      height: 46px;
+      border-radius: .7rem;
+      border: 2px solid var(--ink);
+      background: var(--bg);
+      color: var(--ink);
+      font: 700 .95rem var(--sans);
+      cursor: pointer;
+      position: relative;
+      display: grid;
+      place-items: center;
+      padding: 0;
+    }
+
+    /* Botão ativado */
+    #rail button[aria-pressed=true] {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    body.hc #rail button[aria-pressed=true] {
+      background: #ffe600;
+      color: #000;
+    }
+
+    /* Ícones SVG dos botões */
+    .ic {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Dica (tooltip) mostrada ao passar o mouse; o texto vem do atributo data-l */
+    #rail button:hover::after,
+    #rail button:focus-visible::after {
+      content: attr(data-l);
+      position: absolute;
+      right: 110%;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #000;
+      color: #fff;
+      padding: .3rem .6rem;
+      border-radius: .4rem;
+      white-space: nowrap;
+      font-size: .85rem;
+    }
+
+    /* Barra minimizada: só o botão de minimizar fica visível */
+    #rail.min button:not(#r-min) {
+      display: none;
+    }
+
+    /* No celular a barra vai para a base da tela, na horizontal */
+    @media (max-width: 52rem) {
+      #rail {
+        top: auto;
+        bottom: .5rem;
+        transform: none;
+        flex-direction: row;
+        max-width: calc(100vw - 1rem);
+        max-height: none;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+
+      #rail button:hover::after {
+        display: none;
+      }
+    }
+
+    /* Esconde o botão padrão do VLibras (usamos o nosso na barra) */
+    [vw] [vw-access-button] {
+      display: none !important;
+    }
+
+
+    /* ==============================================================
+       19. MOVIMENTO REDUZIDO
+       Desliga animações para quem prefere assim (configuração do
+       sistema) ou ativou o botão na barra de acessibilidade (.rm).
+       ============================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .js .reveal {
+        opacity: 1;
+        transform: none;
+      }
+
+      .js .fx .w > span {
+        transform: none;
+      }
+
+      .js .clip,
+      .js .clip img {
+        clip-path: none;
+        transform: none;
+      }
+    }
+
+    /* Mesma coisa, mas ativada manualmente pelo botão */
+    body.rm *,
+    body.rm *::before,
+    body.rm *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+
+    body.rm.js .reveal {
+      opacity: 1;
+      transform: none;
+    }
+
+    body.rm.js .fx .w > span {
+      transform: none;
+    }
+
+    body.rm.js .clip,
+    body.rm.js .clip img {
+      clip-path: none;
+      transform: none;
+    }
+
+
+    /* ==============================================================
+       20. MASCOTES E AJUSTES DE IMAGEM
+       ============================================================== */
+
+    /* Mascote solto sobre o hero */
+    .mascot {
+      position: absolute;
+      pointer-events: none;      /* não atrapalha cliques */
+      z-index: 2;
+    }
+
+    /* Flutuação suave dos mascotes */
+    .stage .mascot img {
+      height: auto;
+      width: 100%;
+      object-fit: contain;
+      animation: bob 4.5s ease-in-out infinite alternate;
+    }
+
+    .m-dog {
+      width: 40%;
+      left: -8%;
+      bottom: -8%;
+    }
+
+    .m-bird {
+      width: 30%;
+      right: -8%;
+      top: -12%;
+    }
+
+    .m-bird img {
+      animation-delay: -2s !important;
+    }
+
+    @keyframes bob {
+      to {
+        transform: translateY(-.7rem) rotate(3deg);
+      }
+    }
+
+    /* Gato dentro da bolha azul */
+    .blob.b2 img.cat {
+      object-fit: contain;
+      padding: 14%;
+    }
+
+    /* Imagem com fundo branco que "mistura" com o fundo bege */
+    .ph.blend {
+      aspect-ratio: 1;
+      max-width: 26rem;
+      justify-self: center;
+      width: 100%;
+    }
+
+    .ph.blend img {
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
+    /* "mc" = cartão quadrado de mascote na galeria; cores se alternam de 5 em 5 */
+    .mc {
+      flex: none;
+      width: clamp(11rem, 18vw, 15rem);
+      aspect-ratio: 1;
+      border-radius: 1.6rem;
+      display: grid;
+      place-items: center;
+      padding: 1.2rem;
+      transition: transform .35s;
+    }
+
+    .mc:nth-child(5n+1) { background: var(--soft); }
+    .mc:nth-child(5n+2) { background: var(--sky); }
+    .mc:nth-child(5n+3) { background: var(--sand); }
+    .mc:nth-child(5n+4) { background: var(--accent); }
+
+    .mc:nth-child(5n) {
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+
+    .mc:hover {
+      transform: translateY(-10px) rotate(-3deg);
+    }
+
+    .mc img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    body.hc .mc,
+    body.hcl .mc {
+      border: 2px solid currentColor;
+    }
+
+    /* Mascote no canto de cada cartão da seção Pilares */
+    .tile {
+      position: relative;
+      overflow: hidden;
+      padding-right: 8.5rem;     /* abre espaço para o mascote */
+    }
+
+    .tile .tm {
+      position: absolute;
+      right: .7rem;
+      bottom: .5rem;
+      width: 6.5rem;
+      transition: transform .4s;
+    }
+
+    .tile:hover .tm {
+      transform: translateY(-8px) rotate(-6deg);
+    }
+
+    /* Palco de mascote em formato 16:9 */
+    .mstage {
+      aspect-ratio: 16 / 9;
+      display: grid;
+      place-items: center;
+      background: #ffffff55;
+    }
+
+    .mstage img {
+      height: 82%;
+      width: auto;
+      animation: bob 4.5s ease-in-out infinite alternate;
+    }
+
+    /* Fileira de mascotes pequenos no rodapé */
+    .fm {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 0 0 1rem;
+    }
+
+    .fm img {
+      width: 4.2rem;
+      transition: transform .3s;
+    }
+
+    .fm img:hover {
+      transform: translateY(-10px) rotate(-8deg);
+    }
+
+    @media (max-width: 52rem) {
+      .tile {
+        padding-right: 6.5rem;
+      }
+
+      .tile .tm {
+        width: 4.8rem;
+      }
+    }
+
+
+    /* ==============================================================
+       21. REFINAMENTO VISUAL
+       Esta parte vem por último de propósito: ela SOBRESCREVE regras
+       anteriores para deixar o visual mais limpo e profissional.
+       (Por isso algumas regras antigas, como .pain e .tile, aparecem
+       duas vezes — a última vence.)
+       ============================================================== */
+
+    /* Sombra e raio padrão reutilizados nos cartões */
+    :root {
+      --shadow: 0 1px 2px #5b351f14, 0 20px 44px -20px #5b351f45;
+      --r: 1.25rem;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4.2vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Kicker ganha uma linha decorativa antes do texto */
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: .78rem;
+      letter-spacing: .18em;
+      margin-bottom: 1rem;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 2.2rem;
+      height: 2px;
+      background: currentColor;
+      flex: none;
+    }
+
+    /* --- Cabeçalho e botões --- */
+    header.top {
+      background: color-mix(in srgb, var(--bg) 86%, transparent);
+    }
+
+    nav a {
+      font-size: .95rem;
+    }
+
+    nav a.btn-enter {
+      background: var(--accent);
+      padding: .55rem 1.4rem;
+      box-shadow: var(--shadow);
+    }
+
+    .btn {
+      padding: .95rem 1.8rem;
+      font-weight: 600;
+      letter-spacing: -.01em;
+      border: 1.5px solid color-mix(in srgb, var(--ink) 30%, transparent);
+    }
+
+    .btn.primary {
+      border-color: var(--accent);
+      box-shadow: 0 10px 24px -10px #b9822f99;
+    }
+
+    .btn:hover {
+      box-shadow: 0 12px 26px -12px #5b351f70;
+    }
+
+    /* --- Hero --- */
+    .hero {
+      min-height: auto;
+      padding: 5rem 0 6rem;
+      background: linear-gradient(180deg, var(--sand), var(--bg));
+    }
+
+    .hero .wrap {
+      gap: 3.5rem;
+    }
+
+    .wordmark {
+      font-size: clamp(4rem, 12vw, 9rem);
+      margin: .1em 0 .15em;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+      font-weight: 500;
+      max-width: 30ch;
+      line-height: 1.25;
+      letter-spacing: -.02em;
+    }
+
+    .hero .lead {
+      color: color-mix(in srgb, var(--ink) 85%, transparent);
+      max-width: 46ch;
+    }
+
+    .stage {
+      max-width: 30rem;
+    }
+
+    .blob {
+      animation-duration: 18s;
+    }
+
+    .blob.b1 {
+      inset: 0 0 12% 6%;
+      background: var(--accent);
+      box-shadow: var(--shadow);
+    }
+
+    /* A bolha azul vira um círculo pequeno no canto */
+    .blob.b2 {
+      inset: auto 0 0 auto;
+      width: 38%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      animation: none;
+      background: var(--sky);
+      box-shadow: var(--shadow);
+      border: 4px solid var(--bg);
+    }
+
+    .m-bird {
+      width: 24%;
+      right: -2%;
+      top: -9%;
+    }
+
+    /* --- Faixa de palavras: versão discreta, sem inclinação --- */
+    .marquee {
+      transform: none;
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      border-block: 1px solid var(--line);
+    }
+
+    .marquee div {
+      font: 500 .82rem var(--sans);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      padding: 1.1rem 0;
+    }
+
+    .marquee span::after {
+      width: .35rem;
+      height: .35rem;
+      margin: 0 2.4rem;
+      background: var(--accent);
+    }
+
+    /* --- Espaçamento das seções --- */
+    .objetivo { padding: 7rem 0 3rem; }
+    .quem     { padding: 6rem 0; }
+    .parcerias { padding: 7rem 0; }
+    .faq      { padding: 6rem 0; }
+
+    .intro .ph.blend {
+      background: var(--soft);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+    }
+
+    /* --- Cartões de problemas: brancos, sem inclinação --- */
+    .pains {
+      gap: 1.5rem;
+    }
+
+    .pain:nth-child(n) {
+      transform: none;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: var(--r);
+      padding: 2rem;
+    }
+
+    .pain .n {
+      font-size: .85rem;
+      letter-spacing: .16em;
+      color: var(--link);
+      opacity: 1;
+      margin-bottom: .6rem;
+    }
+
+    .pain h3 {
+      font-size: 1.3rem;
+    }
+
+    /* --- Galeria --- */
+    .band {
+      padding: 2rem 0 5rem;
+    }
+
+    .mc:nth-child(n) {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: var(--r);
+    }
+
+    .mc:nth-child(even) {
+      background: var(--sand);
+    }
+
+    /* --- Pilares --- */
+    .pilares {
+      margin-top: 0;
+      padding: 6rem 0;
+    }
+
+    .pilares > .wave {
+      display: none;             /* onda decorativa removida */
+    }
+
+    .tile:nth-child(n) {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: var(--r);
+    }
+
+    .tile:nth-child(1) { background: var(--soft); }
+    .tile:nth-child(3) { background: var(--sky); }
+
+    .tile h3 {
+      font-size: 1.5rem;
+    }
+
+    .chip {
+      font-size: .7rem;
+      background: var(--bg);
+    }
+
+    .panel {
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+    }
+
+    .mstage {
+      background: #ffffff66;
+    }
+
+    /* --- Abas --- */
+    .tabs [role=tab] {
+      border: 1px solid color-mix(in srgb, var(--ink) 30%, transparent);
+      border-radius: .9rem;
+    }
+
+    /* --- FAQ: cada pergunta vira um cartão com "+" / "−" --- */
+    details {
+      max-width: 54rem;
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      padding: 0 1.4rem;
+      margin-bottom: .75rem;
+      background: var(--surface);
+    }
+
+    summary {
+      list-style: none;                      /* remove a setinha padrão */
+      padding: .4rem 0;
+      justify-content: space-between;
+      font: 600 1.1rem var(--sans);
+    }
+
+    summary::-webkit-details-marker {
+      display: none;                         /* remove a setinha no Safari */
+    }
+
+    summary::after {
+      content: "+";
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--link);
+    }
+
+    details[open] summary::after {
+      content: "−";
+    }
+
+    details p {
+      padding-bottom: 1.2rem;
+    }
+
+    /* --- Formulário e rodapé --- */
+    form {
+      border-radius: var(--r);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    input,
+    select,
+    textarea {
+      border: 1px solid color-mix(in srgb, var(--ink) 35%, transparent);
+      border-radius: .7rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+    }
+
+    .js .reveal {
+      transform: translateY(20px);
+    }
+
+
+    /* ==============================================================
+       22. UTILITÁRIOS
+       ============================================================== */
+
+    /* Texto visível só para leitores de tela (ex.: " asterisco") */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+  </style>
+
+  <!-- Arquivos externos do projeto:
+       a11y.css / a11y.js       → estilo e funções da barra de acessibilidade
+       premium.css / premium.js → estilos e efeitos extras (ex.: seção Objetivo "obj2") -->
+  <link rel="stylesheet" href="a11y.css">
+  <link rel="stylesheet" href="premium.css">
+</head>
+
+
+<body>
+
+  <!-- Barra de progresso de rolagem (decorativa; escondida de leitores de tela) -->
+  <div id="prog" aria-hidden="true"></div>
+
+  <!-- Atalho de acessibilidade: permite pular direto ao conteúdo com o teclado -->
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+
+  <!-- ==============================================================
+       CABEÇALHO E MENU
+       ============================================================== -->
+  <header class="top">
+    <div class="wrap">
+
+      <a class="logo" href="#inicio" aria-label="Nuppy, início da página">Nuppy</a>
+
+      <nav aria-label="Principal">
+        <!-- Botão que abre/fecha o menu no celular -->
+        <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+
+        <ul id="menu">
+          <li><a href="#objetivo">Objetivo</a></li>
+          <li><a href="#parcerias">Parcerias</a></li>
+          <li><a href="#formulario">Formulário</a></li>
+          <li><a class="btn-enter" href="/entrar">Entrar</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <main id="conteudo">
+
+    <!-- ============================================================
+         HERO — primeira tela: marca, título, botões e imagens
+         ============================================================ -->
+    <section class="hero" id="inicio" aria-labelledby="h-hero">
+      <div class="wrap">
+
+        <div>
+
+          <!-- Marca "Nuppy" gigante, letra por letra (--i = ordem da animação).
+               aria-hidden porque o título real é o <h1> logo abaixo -->
+          <p class="wordmark" aria-hidden="true">
+            <span style="--i:0">N</span>
+            <span style="--i:1">u</span>
+            <span style="--i:2">p</span>
+            <span style="--i:3">p</span>
+            <span style="--i:4">y</span>
+          </p>
+
+          <h1 id="h-hero">Nuppy: o mercado pet inteiro, conectado.</h1>
+
+          <p class="lead">
+            Um projeto que aproxima quem cuida de quem atende: tutores encontram serviços e informações,
+            e empresas do universo pet ficam mais perto de quem procura por elas.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn primary" href="#objetivo">Conheça o objetivo</a>
+            <a class="btn" href="#parcerias">Tenho um negócio pet</a>
+          </div>
+        </div>
+        <div class="stage" id="stage">
+          <div class="tilt">
+
+            <!-- Logo transparente em destaque, sem recorte ou moldura circular -->
+            <div class="brand-art" data-speed="-.05">
+              <img src="img/logo.png"
+                   alt="Logo da Nuppy"
+                   onerror="this.style.display='none'">
+            </div>
+
+            <!-- Mascote passarinho -->
+            <div class="mascot m-bird" data-speed="-.1">
+              <img src="img/mascote-passaro.webp"
+                   alt="Mascote da Nuppy: passarinho de penas claras voando">
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         01 · OBJETIVO
+         ============================================================ -->
+    <section class="objetivo obj2" id="objetivo" aria-labelledby="h-obj">
+      <div class="wrap">
+
+        <header class="o-head">
+          <p class="kicker reveal">01 · Nosso objetivo</p>
+          <h2 id="h-obj" class="fx">Cuidar bem de um animal começa por encontrar o que ele precisa.</h2>
+        </header>
+
+        <div class="o-grid">
+
+          <!-- Foto principal com mascotes decorativos (alt vazio = ignorado por leitores de tela) -->
+          <figure class="o-photo reveal">
+            <div class="o-ring" aria-hidden="true"></div>
+            <img src="img/cachorro.png"
+                 alt="Cachorro golden retriever e gato malhado lado a lado" loading="lazy">
+            <img class="o-m o-m1" src="img/mascote-cachorro.webp" alt="" loading="lazy">
+            <img class="o-m o-m2" src="img/mascote-peixe.webp" alt="" loading="lazy">
+            <figcaption class="o-badge"><strong>Lugar</strong> para tutores, serviços e empresas</figcaption>
+          </figure>
+
+          <!-- Texto + três verbos de ação (--d = atraso da animação de entrada) -->
+          <div class="o-text">
+            <p class="o-lead reveal">
+              O mercado pet é cheio de possibilidades: serviços, estabelecimentos, informações.
+              Mas, para o tutor, tudo isso costuma estar <em>espalhado e difícil de comparar</em>.
+            </p>
+
+            <ul class="o-list">
+              <li class="reveal">
+                <span class="o-ic" aria-hidden="true">✦</span>
+                <div>
+                  <h3>Reunir</h3>
+                  <p>A Nuppy nasce para juntar essas possibilidades em uma experiência mais integrada.</p>
+                </div>
+              </li>
+
+              <li class="reveal" style="--d:.1s">
+                <span class="o-ic" aria-hidden="true">⌕</span>
+                <div>
+                  <h3>Facilitar</h3>
+                  <p>Busca simples por serviços e informações relevantes para quem cuida.</p>
+                </div>
+              </li>
+
+              <li class="reveal" style="--d:.2s">
+                <span class="o-ic" aria-hidden="true">♡</span>
+                <div>
+                  <h3>Aproximar</h3>
+                  <p>Tutores e negócios em um mesmo ambiente, crescendo passo a passo.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Lista numerada com os três problemas -->
+        <div class="o-problems">
+          <h3 class="fx">O problema que queremos ajudar a resolver</h3>
+
+          <ol>
+            <li class="reveal">
+              <span class="o-n">01</span>
+              <h4>Informação espalhada</h4>
+              <p>Dicas e referências sobre cuidado animal ficam em lugares diferentes, difíceis de reunir.</p>
+            </li>
+
+            <li class="reveal" style="--d:.1s">
+              <span class="o-n">02</span>
+              <h4>Serviços difíceis de comparar</h4>
+              <p>Descobrir quem oferece o quê, e onde, ainda exige muita busca.</p>
+            </li>
+
+            <li class="reveal" style="--d:.2s">
+              <span class="o-n">03</span>
+              <h4>Negócios difíceis de achar</h4>
+              <p>Empresas pet nem sempre conseguem ser encontradas por quem mais precisa delas.</p>
+            </li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         GALERIA DE MASCOTES — duas fileiras que andam com a rolagem
+         (data-row: 1 = vai para um lado, -1 = vai para o outro)
+         ============================================================ -->
+    <section class="band" aria-label="Os mascotes da Nuppy">
+
+      <!-- Fileira 1 -->
+      <div class="row" data-row="1">
+        <div class="mc"><img src="img/mascote-cachorro.webp" alt="Mascote cachorrinho caramelo"></div>
+        <div class="mc"><img src="img/mascote-gato.webp" alt="Mascote gatinho cinza com sino"></div>
+        <div class="mc"><img src="img/mascote-passaro.webp" alt="Mascote passarinho claro"></div>
+        <div class="mc"><img src="img/mascote-peixe.webp" alt="Mascote peixinho dourado em um aquário"></div>
+        <div class="mc"><img src="img/mascote-peludinho.webp" alt="Mascote peludinho branco e bege"></div>
+        <div class="mc"><img src="img/mascote-cachorro.webp" alt=""></div>
+      </div>
+
+      <!-- Fileira 2 (repetidos têm alt vazio para o leitor de tela não ler duas vezes) -->
+      <div class="row" data-row="-1">
+        <div class="mc"><img src="img/mascote-passaro.webp" alt=""></div>
+        <div class="mc"><img src="img/mascote-peixe.webp" alt=""></div>
+        <div class="mc"><img src="img/mascote-peludinho.webp" alt=""></div>
+        <div class="mc"><img src="img/mascote-cachorro.webp" alt=""></div>
+        <div class="mc"><img src="img/mascote-gato.webp" alt=""></div>
+        <div class="mc"><img src="img/mascote-peludinho.webp" alt=""></div>
+      </div>
+
+    </section>
+
+
+    <!-- ============================================================
+         02 · PILARES — as quatro frentes do projeto
+         ============================================================ -->
+    <section class="pilares" aria-labelledby="h-pil">
+
+      <!-- Onda decorativa (hoje escondida pelo CSS da seção 21) -->
+      <svg class="wave" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 32C240 72 480 0 720 28S1200 64 1440 24V64H0Z"/>
+      </svg>
+
+      <div class="wrap">
+        <p class="kicker reveal">02 · O ecossistema</p>
+        <h2 id="h-pil" class="fx">Quatro frentes, um só universo.</h2>
+
+        <p class="reveal" style="max-width:56ch">
+          O projeto reúne frentes que se complementam. Todas estão em desenvolvimento e vão chegar de forma gradual.
+        </p>
+
+        <div class="bento">
+
+          <article class="tile reveal">
+            <span class="chip">Em desenvolvimento</span>
+            <h3>Perfil do pet</h3>
+            <p>Um espaço para o tutor apresentar seus animais e se conectar com outras pessoas.</p>
+            <img class="tm" src="img/mascote-peludinho.webp" alt="" loading="lazy">
+          </article>
+
+          <article class="tile reveal" style="--d:.1s">
+            <span class="chip">Em desenvolvimento</span>
+            <h3>Comunidades</h3>
+            <p>Grupos para trocar experiências, dúvidas e informações sobre o cuidado com os animais.</p>
+            <img class="tm" src="img/mascote-gato.webp" alt="" loading="lazy">
+          </article>
+
+          <article class="tile reveal">
+            <span class="chip">Em desenvolvimento</span>
+            <h3>Mapa de lugares pet</h3>
+            <p>Estabelecimentos e serviços do universo pet reunidos em um mapa, para facilitar a descoberta perto de você.</p>
+            <img class="tm" src="img/mascote-passaro.webp" alt="" loading="lazy">
+          </article>
+
+          <article class="tile reveal" style="--d:.1s">
+            <span class="chip">Aberto</span>
+            <h3>Parcerias</h3>
+            <p>Empresas podem pedir para participar.</p>
+            <p style="margin-top:.8rem"><a href="#formulario">Enviar solicitação</a></p>
+            <img class="tm" src="img/mascote-peixe.webp" alt="" loading="lazy">
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         04 · PARCERIAS — abas com tipos de parceiro + passos
+         ============================================================ -->
+    <section class="parcerias" id="parcerias" aria-labelledby="h-par">
+      <div class="wrap">
+
+        <p class="kicker reveal">04 · Parcerias comerciais</p>
+        <h2 id="h-par" class="fx">Seja encontrado por quem cuida.</h2>
+
+        <p class="sub reveal">
+          Ser descoberto é o primeiro desafio de qualquer negócio. A Nuppy propõe aproximar empresas pet
+          de tutores interessados, com presença na plataforma e em recursos como o mapa.
+          Explore quem pode participar:
+        </p>
+        <!-- Passos do processo (os números 01, 02, 03 são gerados pelo CSS) -->
+        <h3 class="fx" style="font-size:1.8rem;margin-top:4rem">Como funciona a solicitação</h3>
+
+        <ol class="steps">
+          <li class="reveal">
+            <strong>Você envia o formulário</strong>
+            Conta sobre a empresa e os serviços oferecidos.
+          </li>
+
+          <li class="reveal" style="--d:.1s">
+            <strong>A equipe analisa</strong>
+            Cada solicitação é avaliada, sem aprovação automática.
+          </li>
+
+          <li class="reveal" style="--d:.2s">
+            <strong>Retornamos o contato</strong>
+            Se a parceria seguir, explicamos os próximos passos e as condições.
+          </li>
+        </ol>
+
+        <p class="note">
+          As categorias acima ainda serão confirmadas. Valores e condições comerciais ainda não foram definidos
+          e serão informados no contato. Enviar o formulário é uma manifestação de interesse.
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         05 · FAQ — usa <details>, que abre e fecha sem JavaScript
+         ============================================================ -->
+    <section class="faq" aria-labelledby="h-faq">
+      <div class="wrap">
+
+        <p class="kicker reveal">05 · Dúvidas</p>
+        <h2 id="h-faq" class="fx">Perguntas frequentes.</h2>
+
+        <div class="reveal">
+
+          <details>
+            <summary>A Nuppy já está funcionando?</summary>
+            <p>O projeto está em desenvolvimento. As frentes mostradas aqui chegam de forma gradual.</p>
+          </details>
+
+          <details>
+            <summary>Enviar o formulário garante a parceria?</summary>
+            <p>Não. O envio é uma manifestação de interesse e cada solicitação passa por análise da equipe.</p>
+          </details>
+
+          <details>
+            <summary>Quanto custa participar?</summary>
+            <p>Os valores e condições comerciais ainda serão definidos. Nada é cobrado ao enviar o formulário.</p>
+          </details>
+
+          <details>
+            <summary>O que acontece com os meus dados?</summary>
+            <p>Pedimos só o necessário para avaliar a solicitação e usamos as informações apenas para esse fim.</p>
+          </details>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         06 · FORMULÁRIO DE PARCERIA
+         Informações em cima, formulário embaixo.
+         O envio é feito pelo JavaScript (fim do arquivo) para o Supabase.
+         novalidate = desliga a validação do navegador; usamos a nossa, com mensagens em português.
+         ============================================================ -->
+    <section class="formulario" id="formulario" aria-labelledby="h-form">
+      <div class="wrap">
+
+        <div class="head">
+          <p class="kicker reveal">06 · Parceria</p>
+          <h2 id="h-form" class="fx">Seja nosso parceiro.</h2>
+
+          <p class="reveal">
+            Conte sobre o seu negócio. As informações chegam à equipe responsável, que analisa a solicitação
+            antes de qualquer aprovação. Coletamos apenas o necessário e os campos com
+            <span class="req" aria-hidden="true">*</span><span class="sr-only"> asterisco</span>
+            são obrigatórios.
+          </p>
+        </div>
+
+        <form id="pf" novalidate class="reveal" aria-describedby="status">
+
+          <!-- Campo isca anti-spam (honeypot): pessoas não veem; robôs costumam preencher.
+               Se vier preenchido, o JS descarta o envio. -->
+          <div class="hp" aria-hidden="true">
+            <label>Não preencha <input name="website_hp" tabindex="-1" autocomplete="off"></label>
+          </div>
+
+          <!-- Linha 1: empresa e responsável -->
+          <div class="frow">
+            <div>
+              <label for="company_name">Nome da empresa <span class="req">*</span></label>
+              <input id="company_name" name="company_name" required maxlength="120" autocomplete="organization">
+              <p class="err" id="e-company_name"></p>
+            </div>
+
+            <div>
+              <label for="contact_name">Nome do responsável <span class="req">*</span></label>
+              <input id="contact_name" name="contact_name" required maxlength="120" autocomplete="name">
+              <p class="err" id="e-contact_name"></p>
+            </div>
+          </div>
+
+          <!-- Linha 2: e-mail e telefone -->
+          <div class="frow">
+            <div>
+              <label for="email">E-mail <span class="req">*</span></label>
+              <input id="email" name="email" type="email" inputmode="email" required maxlength="160" autocomplete="email">
+              <p class="err" id="e-email"></p>
+            </div>
+
+            <div>
+              <label for="phone">Telefone ou WhatsApp</label>
+              <input id="phone" name="phone" type="tel" inputmode="tel" maxlength="30" autocomplete="tel">
+              <p class="err" id="e-phone"></p>
+            </div>
+          </div>
+
+          <!-- Linha 3: segmento e cidade -->
+          <div class="frow">
+            <div>
+              <label for="segment">Segmento <span class="req">*</span></label>
+              <select id="segment" name="segment" required>
+                <option value="">Selecione</option>
+                <option>Clínica veterinária</option>
+                <option>Estabelecimento pet</option>
+                <option>Prestador de serviço</option>
+                <option>Outro</option>
+              </select>
+              <p class="err" id="e-segment"></p>
+            </div>
+
+            <div>
+              <label for="city_state">Cidade e estado <span class="req">*</span></label>
+              <input id="city_state" name="city_state" required maxlength="100"
+                     autocomplete="address-level2" placeholder="Ex.: São Paulo, SP">
+              <p class="err" id="e-city_state"></p>
+            </div>
+          </div>
+
+          <!-- Endereço (opcional) -->
+          <div>
+            <label for="address">Endereço (para localização no mapa)</label>
+            <input id="address" name="address" maxlength="200" autocomplete="street-address">
+          </div>
+
+          <!-- Site (opcional, precisa começar com http:// ou https://) -->
+          <div>
+            <label for="site">Site ou perfil comercial</label>
+            <input id="site" name="site" type="url" inputmode="url" maxlength="200" placeholder="https://">
+            <p class="err" id="e-site"></p>
+          </div>
+
+          <!-- Serviços oferecidos (obrigatório) -->
+          <div>
+            <label for="services">Serviços oferecidos <span class="req">*</span></label>
+            <textarea id="services" name="services" required maxlength="1500"></textarea>
+            <p class="err" id="e-services"></p>
+          </div>
+
+          <!-- Informações adicionais (opcional) -->
+          <div>
+            <label for="notes">Apresentação ou informações adicionais</label>
+            <textarea id="notes" name="notes" maxlength="1500"></textarea>
+          </div>
+
+          <!-- Consentimento (obrigatório) -->
+          <div class="check">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent">
+              Estou ciente de que os dados enviados serão usados apenas para avaliar esta solicitação de parceria.
+              <span class="req">*</span>
+            </label>
+          </div>
+          <p class="err" id="e-consent"></p>
+
+          <button class="btn primary" type="submit" id="send">Enviar solicitação</button>
+
+          <!-- Mensagem de resultado (sucesso/erro). role="status" faz o leitor de tela anunciar -->
+          <div id="status" role="status" aria-live="polite" tabindex="-1" hidden></div>
+
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ==============================================================
+       RODAPÉ
+       ============================================================== -->
+  <footer id="rodape">
+    <div class="wrap">
+
+      <p class="big" aria-hidden="true">Nuppy.</p>
+
+      <!-- Mascotes decorativos -->
+      <div class="fm" aria-hidden="true">
+        <img src="img/mascote-cachorro.webp" alt="" loading="lazy">
+        <img src="img/mascote-gato.webp" alt="" loading="lazy">
+        <img src="img/mascote-passaro.webp" alt="" loading="lazy">
+        <img src="img/mascote-peixe.webp" alt="" loading="lazy">
+        <img src="img/mascote-peludinho.webp" alt="" loading="lazy">
+      </div>
+
+      <p>Projeto que conecta tutores, empresas, serviços e informações do universo pet.</p>
+
+      <ul aria-label="Links do rodapé">
+        <li><a href="#objetivo">Objetivo</a></li>
+        <li><a href="#parcerias">Parcerias</a></li>
+        <li><a href="#formulario">Formulário</a></li>
+        <li><a href="/entrar">Entrar</a></li>
+      </ul>
+
+      <small>Redes sociais, contato e política de privacidade: a definir.</small>
+
+      <!-- O ano é atualizado automaticamente pelo JavaScript -->
+      <small>© <span id="ano">2026</span> Nuppy. Todos os direitos reservados.</small>
+
+    </div>
+  </footer>
+
+
+  <!-- ==============================================================
+       VLIBRAS — widget do governo que traduz o site para Libras.
+       A estrutura abaixo é exigida pelo plugin; não altere os atributos "vw".
+       ============================================================== -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <!-- "defer" = os scripts só rodam depois que o HTML terminou de carregar -->
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js" defer></script>
+  <script src="a11y.js" defer></script>
+  <script src="premium.js" defer></script>
+
+
+  <!-- ==============================================================
+       JAVASCRIPT PRINCIPAL
+       ============================================================== -->
+  <script>
+    /* ------------------------------------------------------------
+       CONFIGURAÇÃO DO SUPABASE (banco de dados do formulário)
+       Preencha com os dados do seu projeto no painel do Supabase.
+       Enquanto estiverem vazios, o formulário avisa que o envio
+       ainda não está configurado.
+       ------------------------------------------------------------ */
+    const SUPABASE_URL = "";       // ex.: https://xxxx.supabase.co
+    const SUPABASE_ANON_KEY = "";  // chave pública (anon). NUNCA use a service_role aqui.
+
+
+    /* ------------------------------------------------------------
+       ATALHOS E CONFIGURAÇÃO INICIAL
+       ------------------------------------------------------------ */
+
+    // $ = pega UM elemento; $$ = pega VÁRIOS (como lista de verdade, com .forEach/.map)
+    const $  = (seletor, raiz = document) => raiz.querySelector(seletor);
+    const $$ = (seletor, raiz = document) => [...raiz.querySelectorAll(seletor)];
+
+    // Marca que o JavaScript está ativo: o CSS só aplica as animações de entrada
+    // quando a classe "js" existe (se o JS falhar, o conteúdo continua visível)
+    document.documentElement.classList.add("js");
+    document.body.classList.add("js");
+
+    // Coloca o ano atual no rodapé
+    $("#ano").textContent = new Date().getFullYear();
+
+    // Inicia o VLibras quando a página termina de carregar
+    // (try/catch: se o plugin não carregar, o site segue funcionando normalmente)
+    addEventListener("load", () => {
+      try {
+        new window.VLibras.Widget("https://vlibras.gov.br/app");
+      } catch (e) {}
+    });
+
+    // Retorna true se o usuário prefere menos movimento (configuração do sistema)
+    // ou ativou o botão "movimento reduzido" na barra de acessibilidade
+    const calm = () =>
+      matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      document.body.classList.contains("rm");
+
+
+    /* ------------------------------------------------------------
+       MENU
+       - Abre/fecha no celular
+       - Fecha ao clicar em um link ou apertar Esc
+       - Destaca o link da seção que está na tela
+       ------------------------------------------------------------ */
+    const menuBtn = $(".menu-toggle");
+    const menu    = $("#menu");
+
+    // Clique no botão "Menu": alterna a classe "open" e avisa o leitor de tela (aria-expanded)
+    menuBtn.addEventListener("click", () => {
+      const aberto = menu.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", aberto);
+    });
+
+    // Clique em um link do menu: fecha o menu
+    menu.addEventListener("click", (e) => {
+      if (e.target.tagName === "A") {
+        menu.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Tecla Esc: fecha o menu
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        menu.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Destaque do link da seção atual:
+    // o IntersectionObserver avisa quando uma seção cruza o meio da tela
+    const menuLinks = $$("nav a[href^='#']");
+
+    const observadorMenu = new IntersectionObserver(
+      (entradas) => entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) {
+          menuLinks.forEach((link) => {
+            link.setAttribute("aria-current", link.getAttribute("href") === "#" + entrada.target.id);
+          });
+        }
+      }),
+      { rootMargin: "-45% 0px -50% 0px" }  // "faixa" fina no meio da tela
+    );
+
+    $$("main section[id]").forEach((secao) => observadorMenu.observe(secao));
+
+
+    /* ------------------------------------------------------------
+       TÍTULOS ANIMADOS (.fx) E REVELAÇÃO AO ROLAR (.reveal, .clip)
+       ------------------------------------------------------------ */
+
+    // Para cada título .fx: separa em palavras e envolve cada uma em dois <span>
+    // (o de fora esconde, o de dentro sobe). --k é a posição, usada no atraso.
+    $$(".fx").forEach((titulo) => {
+      let k = 0;
+      titulo.innerHTML = titulo.textContent
+        .trim()
+        .split(/\s+/)
+        .map((palavra) => `<span class="w"><span style="--k:${k++}">${palavra}</span></span>`)
+        .join(" ");
+    });
+
+    // Quando 15% do elemento aparece na tela, adiciona a classe "in" (o CSS faz a animação)
+    // e para de observar, para a animação acontecer só uma vez
+    const observadorReveal = new IntersectionObserver(
+      (entradas) => entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add("in");
+          observadorReveal.unobserve(entrada.target);
+        }
+      }),
+      { threshold: .15 }
+    );
+
+    $$(".reveal, .fx, .clip").forEach((el) => observadorReveal.observe(el));
+
+
+    /* ------------------------------------------------------------
+       EFEITOS DE ROLAGEM
+       - Barra de progresso no topo
+       - Parallax (elementos com data-speed andam em velocidades diferentes)
+       - Galeria de mascotes (elementos com data-row deslizam para os lados)
+       ------------------------------------------------------------ */
+    const barra     = $("#prog");
+    const parallax  = $$("[data-speed]");
+    const fileiras  = $$("[data-row]");
+    let aguardando  = false;   // evita rodar a função mais de uma vez por quadro
+
+    function aoRolar() {
+      // Barra de progresso: quanto já rolou / quanto dá para rolar (0 a 1)
+      const y = scrollY;
+      const total = document.documentElement.scrollHeight - innerHeight;
+      barra.style.transform = "scaleX(" + (total > 0 ? y / total : 0) + ")";
+
+      // Se o usuário prefere menos movimento, zera os efeitos e sai
+      if (calm()) {
+        fileiras.forEach((f) => f.style.transform = "");
+        parallax.forEach((p) => p.style.transform = "");
+        return;
+      }
+
+      // Parallax: desloca verticalmente conforme a distância do centro da tela
+      parallax.forEach((p) => {
+        const caixa = p.getBoundingClientRect();
+        const deslocamento = (caixa.top + caixa.height / 2 - innerHeight / 2) * -p.dataset.speed;
+        p.style.transform = "translate3d(0," + deslocamento + "px,0)";
+      });
+
+      // Galeria: cada fileira desliza para um lado (direção = data-row: 1 ou -1)
+      fileiras.forEach((fileira) => {
+        const caixa   = fileira.parentElement.getBoundingClientRect();
+        const direcao = +fileira.dataset.row;
+        const x       = (innerHeight - caixa.top) * .35 * direcao;
+        fileira.style.transform = "translate3d(" + (direcao > 0 ? -300 + x : -600 + x) + "px,0,0)";
+      });
+    }
+
+    // Escuta a rolagem, mas só executa uma vez por quadro (requestAnimationFrame) para ficar leve
+    addEventListener("scroll", () => {
+      if (aguardando) return;
+      aguardando = true;
+      requestAnimationFrame(() => {
+        aoRolar();
+        aguardando = false;
+      });
+    }, { passive: true });
+
+    aoRolar();  // roda uma vez ao carregar para posicionar tudo
+
+
+    /* ------------------------------------------------------------
+       EFEITOS DE MOUSE
+       ------------------------------------------------------------ */
+
+    // HERO: o foco de luz e a inclinação das imagens seguem o cursor
+    const hero  = $(".hero");
+    const tilt  = $(".tilt");
+
+    hero.addEventListener("pointermove", (e) => {
+      if (calm()) return;
+
+      // Posição do mouse dentro do hero → usada pelo gradiente de luz (CSS: --px, --py)
+      const h = hero.getBoundingClientRect();
+      hero.style.setProperty("--px", (e.clientX - h.left) + "px");
+      hero.style.setProperty("--py", (e.clientY - h.top) + "px");
+
+      // Posição do mouse dentro do palco, de -1 a 1 → usada na inclinação 3D (CSS: --mx, --my)
+      const s = $("#stage").getBoundingClientRect();
+      tilt.style.setProperty("--mx", ((e.clientX - s.left) / s.width  - .5) * 2);
+      tilt.style.setProperty("--my", ((e.clientY - s.top)  / s.height - .5) * 2);
+    });
+
+    // CARTÕES (.tile): inclinam em 3D; ao tirar o mouse, voltam ao normal
+    $$(".tile").forEach((cartao) => {
+      cartao.addEventListener("pointermove", (e) => {
+        if (calm()) return;
+        const c = cartao.getBoundingClientRect();
+        cartao.style.setProperty("--tx", ((e.clientX - c.left) / c.width  - .5) * 2);
+        cartao.style.setProperty("--ty", ((e.clientY - c.top)  / c.height - .5) * 2);
+      });
+
+      cartao.addEventListener("pointerleave", () => {
+        cartao.style.setProperty("--tx", 0);
+        cartao.style.setProperty("--ty", 0);
+      });
+    });
+
+    // BOTÕES (.btn): são levemente "atraídos" pelo cursor (efeito magnético)
+    $$(".btn").forEach((botao) => {
+      botao.addEventListener("pointermove", (e) => {
+        if (calm()) return;
+        const r = botao.getBoundingClientRect();
+        const dx = (e.clientX - r.left - r.width  / 2) * .18;
+        const dy = (e.clientY - r.top  - r.height / 2) * .25;
+        botao.style.transform = "translate(" + dx + "px," + dy + "px)";
+      });
+
+      botao.addEventListener("pointerleave", () => botao.style.transform = "");
+    });
+
+
+    /* ------------------------------------------------------------
+       ABAS (seção Parcerias)
+       Clique ou setas do teclado trocam a aba; só o painel da aba
+       ativa fica visível.
+       ------------------------------------------------------------ */
+    const abas = $$("[role=tab]");
+
+    function selecionarAba(abaAtiva) {
+      abas.forEach((aba) => {
+        const ativa = aba === abaAtiva;
+        aba.setAttribute("aria-selected", ativa);       // avisa o leitor de tela
+        aba.tabIndex = ativa ? 0 : -1;                  // só a aba ativa recebe Tab
+        document.getElementById(aba.getAttribute("aria-controls")).hidden = !ativa;  // mostra/esconde o painel
+      });
+      abaAtiva.focus();
+    }
+
+    abas.forEach((aba, i) => {
+      aba.addEventListener("click", () => selecionarAba(aba));
+
+      // Setas: ↓ e → vão para a próxima; ↑ e ← voltam. O "%" faz dar a volta (última → primeira)
+      aba.addEventListener("keydown", (e) => {
+        const passo = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+        if (passo) {
+          e.preventDefault();
+          selecionarAba(abas[(i + passo + abas.length) % abas.length]);
+        }
+      });
+    });
+
+
+    /* ------------------------------------------------------------
+       FORMULÁRIO DE PARCERIA
+       1) valida os campos
+       2) envia os dados para a tabela "partnership_requests" do Supabase
+       3) mostra mensagem de sucesso ou erro
+       ------------------------------------------------------------ */
+    const form      = $("#pf");
+    const status    = $("#status");
+    const botaoEnviar = $("#send");
+
+    // Mensagens de erro em português
+    const mensagens = {
+      required: "Preencha este campo.",
+      email:    "Informe um e-mail válido.",
+      url:      "Informe um endereço completo, começando com https://",
+      consent:  "É necessário confirmar a ciência para enviar."
+    };
+
+    // Mostra (ou limpa) o erro de um campo.
+    // O <p> de erro tem id "e-" + nome do campo (ex.: e-email)
+    function mostrarErro(campo, mensagem) {
+      const p = document.getElementById("e-" + campo.name);
+      if (p) p.textContent = mensagem || "";
+
+      if (mensagem) {
+        campo.setAttribute("aria-invalid", "true");               // deixa a borda vermelha
+        if (p) campo.setAttribute("aria-describedby", p.id);      // leitor de tela lê o erro junto do campo
+      } else {
+        campo.removeAttribute("aria-invalid");
+      }
+    }
+
+    // Valida todos os campos. Retorna o PRIMEIRO campo com erro (para focar nele) ou null se está tudo certo
+    function validar() {
+      let primeiroErro = null;
+
+      [...form.elements].forEach((campo) => {
+        // Ignora botões e o campo isca anti-spam
+        if (!campo.name || campo.name === "website_hp") return;
+
+        let erro = "";
+        const valor = campo.type === "checkbox" ? campo.checked : campo.value.trim();
+
+        if (campo.required && !valor) {
+          // Obrigatório e vazio
+          erro = campo.type === "checkbox" ? mensagens.consent : mensagens.required;
+        } else if (campo.type === "email" && valor && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(valor)) {
+          // E-mail com formato inválido
+          erro = mensagens.email;
+        } else if (campo.type === "url" && valor && !/^https?:\/\/.+\..+/.test(valor)) {
+          // Site sem http:// ou https://
+          erro = mensagens.url;
+        }
+
+        mostrarErro(campo, erro);
+        if (erro && !primeiroErro) primeiroErro = campo;
+      });
+
+      return primeiroErro;
+    }
+
+    // Mostra a mensagem de resultado ("ok" = verde/azul, "bad" = vermelha) e foca nela
+    function mostrarStatus(texto, classe) {
+      status.hidden = false;
+      status.className = classe;
+      status.textContent = texto;
+      status.focus();
+    }
+
+    // Quando o formulário é enviado
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();                    // impede o envio padrão do navegador
+      if (botaoEnviar.disabled) return;      // evita envio duplo
+      status.hidden = true;
+
+      // 1) Validação
+      const invalido = validar();
+      if (invalido) {
+        invalido.focus();
+        return;
+      }
+
+      // 2) Anti-spam: se o campo isca foi preenchido, ignora silenciosamente
+      if (form.website_hp.value) return;
+
+      // 3) Supabase ainda não configurado: avisa e não finge que enviou
+      if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+        mostrarStatus("O envio ainda não está configurado. Sua solicitação não foi registrada.", "bad");
+        return;
+      }
+
+      // 4) Prepara o envio
+      botaoEnviar.disabled = true;
+      botaoEnviar.textContent = "Enviando…";
+
+      const d = Object.fromEntries(new FormData(form));   // transforma o formulário em objeto
+
+      // Monta o corpo da requisição. Campos opcionais vazios viram null (|| null)
+      const corpo = {
+        company_name: d.company_name.trim(),
+        contact_name: d.contact_name.trim(),
+        email:        d.email.trim(),
+        phone:        d.phone.trim()   || null,
+        segment:      d.segment,
+        city_state:   d.city_state.trim(),
+        address:      d.address.trim() || null,
+        site:         d.site.trim()    || null,
+        services:     d.services.trim(),
+        notes:        d.notes.trim()   || null,
+        consent:      true
+      };
+
+      // 5) Envia para a API REST do Supabase
+      try {
+        const resposta = await fetch(SUPABASE_URL + "/rest/v1/partnership_requests", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: "Bearer " + SUPABASE_ANON_KEY,
+            Prefer: "return=minimal"          // não precisa devolver o registro criado
+          },
+          body: JSON.stringify(corpo)
+        });
+
+        if (!resposta.ok) throw new Error(resposta.status);
+
+        form.reset();
+        mostrarStatus("Solicitação recebida. A equipe vai analisá-la antes de qualquer aprovação. Obrigado pelo interesse!", "ok");
+
+      } catch (erro) {
+        mostrarStatus("Não foi possível enviar agora. Tente novamente em instantes.", "bad");
+
+      } finally {
+        // Sempre reativa o botão, deu certo ou não
+        botaoEnviar.disabled = false;
+        botaoEnviar.textContent = "Enviar solicitação";
+      }
+    });
+  </script>
+
+</body>
+</html>

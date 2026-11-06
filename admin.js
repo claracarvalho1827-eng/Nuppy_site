@@ -51,16 +51,16 @@
     return;
   }
   const user = await window.Nuppy.sessaoAdmin();
-  if (!user) { location.replace("/entrar"); return; }
+  if (!user) { location.replace("entrar.html"); return; }
 
-  db.auth.onAuthStateChange((evento) => { if (evento === "SIGNED_OUT") location.replace("/entrar"); });
+  db.auth.onAuthStateChange((evento) => { if (evento === "SIGNED_OUT") location.replace("entrar.html"); });
 
   $("#verificando").hidden = true;
   $("#app").hidden = false;
   const nomeDe = (u) => (u.user_metadata && u.user_metadata.nome) || u.email;
   $("#quem").textContent = nomeDe(user);
 
-  async function sair() { await db.auth.signOut(); location.replace("/entrar"); }
+  async function sair() { await db.auth.signOut(); location.replace("entrar.html"); }
   $("#sair").addEventListener("click", sair);
   $("#sair2").addEventListener("click", sair);
 

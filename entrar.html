@@ -20,7 +20,7 @@
   <main id="conteudo" class="wrap">
     <div class="col">
       <a class="home" href="index.html">&larr; Voltar para a página inicial</a>
-      <a class="entrar" href="admin.html">&larr; Voltar para a página inicial</a>
+
 
 
       <section id="login" class="box" aria-labelledby="h-login">
@@ -113,7 +113,7 @@
     $("#lembrar").checked = Nuppy.lembrando();
 
     // Já existe sessão de administrador? Vai direto ao painel
-    if (Nuppy.configurado && (await Nuppy.sessaoAdmin())) { location.replace("/admin"); return; }
+    if (Nuppy.configurado && (await Nuppy.sessaoAdmin())) { location.replace("admin.html"); return; }
 
     // ENTRAR
     fl.addEventListener("submit", async (e) => {
@@ -138,7 +138,7 @@
           mostrar(status, "Esta conta não tem acesso ao painel administrador.", "bad");
           return;
         }
-        location.replace("/admin");
+        location.replace("admin.html");
       } catch (err) {
         mostrar(status, "Não foi possível entrar agora. Tente novamente em instantes.", "bad");
       } finally {
@@ -155,7 +155,7 @@
       if (!EMAIL.test(email)) { mostrar(status, "Informe um e-mail válido.", "bad"); $("#email-rec").focus(); return; }
       if (!Nuppy.configurado) { mostrar(status, "O envio ainda não está configurado.", "bad"); return; }
       b.disabled = true; b.textContent = "Enviando…";
-      const { error } = await Nuppy.db.auth.resetPasswordForEmail(email, { redirectTo: location.origin + "/redefinir" });
+      const { error } = await Nuppy.db.auth.resetPasswordForEmail(email, { redirectTo: new URL("redefinir.html", location.href).href });
       b.disabled = false; b.textContent = "Enviar link";
       // Mesma resposta exista ou não a conta, para não revelar quem é cadastrado
       if (error && error.status === 429) mostrar(status, "Muitas tentativas. Aguarde alguns minutos.", "bad");

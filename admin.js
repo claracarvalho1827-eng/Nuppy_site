@@ -192,7 +192,18 @@
     lista.replaceChildren(...rows.map(cartaoReclamacao));
   }
 
+  // Nomes legíveis para o que foi denunciado (referencia_tipo gravado pelo app)
+  const REF_NOME = { post: "Publicação", comentario: "Comentário", perfil: "Perfil", mensagem: "Mensagem de comunidade", estabelecimento: "Estabelecimento", servico: "Serviço" };
+  // Tabela do Supabase onde o conteúdo denunciado está (para o admin localizar pelo ID)
+  const REF_TABELA = { post: "posts", comentario: "post_comments", perfil: "profiles", mensagem: "community_messages", estabelecimento: "places", servico: "services" };
+
   function cartaoReclamacao(c) {
+    // Denúncia: mostra o que foi denunciado e o ID para localizar no Supabase
+    const ref = c.referencia_tipo && c.referencia_id
+      ? el("p", { class: "msg-text" },
+          el("strong", { text: "Denúncia de " + (REF_NOME[c.referencia_tipo] || c.referencia_tipo).toLowerCase() + ". " }),
+          "Tabela: " + (REF_TABELA[c.referencia_tipo] || "?") + " · ID: " + c.referencia_id)
+      : null;
     const card = el("article", { class: "card", "aria-label": "Reclamação: " + (c.assunto || "sem assunto") },
       el("div", { class: "card-top" },
         el("div", {},
@@ -201,6 +212,7 @@
             c.nome ? el("span", { class: "tag", text: c.nome }) : null,
             c.email ? el("span", { class: "tag beige", text: c.email }) : null)),
         el("span", { class: "date", text: data(c.created_at) })),
+      ref,
       el("p", { class: "msg-text", text: c.mensagem }),
       el("div", { class: "actions" },
         el("button", { class: "btn primary sm", type: "button", text: "Marcar como resolvida", onclick: (e) => resolver(card, c, e.currentTarget) })));

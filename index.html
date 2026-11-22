@@ -19,8 +19,9 @@
   <!-- Cor da barra do navegador no celular -->
   <meta name="theme-color" content="#F2EFEA">
 
-  <!-- Favicon desenhado em SVG dentro do próprio link (não precisa de arquivo de imagem) -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23DBA262'/%3E%3Ctext x='32' y='46' font-size='40' font-family='Georgia' font-weight='700' text-anchor='middle' fill='%235B351F'%3EN%3C/text%3E%3C/svg%3E">
+  <!-- Favicon: logo da Nuppy (arquivo favicon.ico) -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="img/nuppy-logo.png">
 
   <!-- Fonte DM Sans (Google Fonts). O preconnect acelera a conexão com o servidor das fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1292,10 +1293,6 @@
       }
     }
 
-    /* Esconde o botão padrão do VLibras (usamos o nosso na barra) */
-    [vw] [vw-access-button] {
-      display: none !important;
-    }
 
 
     /* ==============================================================
@@ -2350,19 +2347,8 @@
   </footer>
 
 
-  <!-- ==============================================================
-       VLIBRAS — widget do governo que traduz o site para Libras.
-       A estrutura abaixo é exigida pelo plugin; não altere os atributos "vw".
-       ============================================================== -->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-  </div>
 
   <!-- "defer" = os scripts só rodam depois que o HTML terminou de carregar -->
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js" defer></script>
   <script src="a11y.js" defer></script>
   <script src="premium.js" defer></script>
 
@@ -2397,13 +2383,6 @@
     // Coloca o ano atual no rodapé
     $("#ano").textContent = new Date().getFullYear();
 
-    // Inicia o VLibras quando a página termina de carregar
-    // (try/catch: se o plugin não carregar, o site segue funcionando normalmente)
-    addEventListener("load", () => {
-      try {
-        new window.VLibras.Widget("https://vlibras.gov.br/app");
-      } catch (e) {}
-    });
 
     // Retorna true se o usuário prefere menos movimento (configuração do sistema)
     // ou ativou o botão "movimento reduzido" na barra de acessibilidade

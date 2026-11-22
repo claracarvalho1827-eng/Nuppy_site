@@ -58,6 +58,7 @@ input[readonly]{background:var(--blue-50);color:var(--muted)}
 .app{display:grid;grid-template-columns:17rem 1fr;min-height:100vh}
 .side{background:var(--surface);border-right:1px solid var(--line);padding:1.6rem 1.1rem;display:flex;flex-direction:column;gap:1.6rem;position:sticky;top:0;height:100vh}
 .side .brand{font:700 2rem/1 var(--display);color:var(--blue-800);padding:0 .6rem}
+.side .brand img{display:block;width:4.2rem;height:4.2rem}
 .side .brand small{display:block;font:500 .8rem var(--sans);color:var(--muted);margin-top:.35rem;letter-spacing:.04em;text-transform:uppercase}
 .side nav{display:flex;flex-direction:column;gap:.3rem}
 .side nav a{display:flex;align-items:center;gap:.7rem;padding:.75rem .8rem;border-radius:.8rem;color:var(--ink);text-decoration:none;font-weight:500;min-height:46px}
@@ -101,6 +102,7 @@ dialog .actions{justify-content:flex-end}
   .app{grid-template-columns:1fr}
   .side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;padding:.9rem 1rem;gap:.6rem 1rem;border-right:0;border-bottom:1px solid var(--line)}
   .side .brand small{display:none}
+  .side .brand img{width:2.8rem;height:2.8rem}
   .side nav{flex-direction:row;flex-wrap:wrap;order:3;width:100%}
   .side nav a{flex:1 1 auto;justify-content:center;padding:.6rem .7rem}
   .side .bottom{margin:0 0 0 auto;border:0;padding:0}

@@ -27,7 +27,7 @@ body.noimg .bg{background:#5B351F}
 .home:hover{text-decoration:underline}
 .box{background:var(--card);border-radius:1.4rem;padding:2rem 2.2rem 1.8rem;box-shadow:0 24px 60px rgba(0,0,0,.35);animation:rise .5s ease both}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}}
-.logo{display:block;width:10.5rem;height:auto;margin:0 auto .4rem}
+.logo{display:block;width:7.5rem;height:auto;margin:0 auto .6rem}
 h1{margin:0;text-align:center;font:700 1.85rem/1.2 var(--sans);letter-spacing:-.01em}
 .sub{text-align:center;color:var(--muted);font-size:.95rem;margin:.3rem 0 1.6rem}
 

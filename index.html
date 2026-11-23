@@ -2349,6 +2349,14 @@
 
 
   <!-- "defer" = os scripts só rodam depois que o HTML terminou de carregar -->
+  <!-- VLIBRAS: widget do governo que traduz o site para Libras (não altere os atributos "vw") -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js" defer></script>
   <script src="a11y.js" defer></script>
   <script src="premium.js" defer></script>
 
@@ -2382,6 +2390,13 @@
 
     // Coloca o ano atual no rodapé
     $("#ano").textContent = new Date().getFullYear();
+
+    // Inicia o VLibras (try/catch: se o plugin não carregar, o site segue normal)
+    addEventListener("load", () => {
+      try {
+        new window.VLibras.Widget("https://vlibras.gov.br/app");
+      } catch (e) {}
+    });
 
 
     // Retorna true se o usuário prefere menos movimento (configuração do sistema)

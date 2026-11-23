@@ -324,14 +324,6 @@
       gap: 1rem;
     }
 
-    /* Logo "Nuppy" em texto */
-    .logo {
-      font: 700 1.7rem var(--display);
-      color: var(--ink);
-      text-decoration: none;
-      background: none !important;
-      padding: 0 !important;
-    }
 
     /* Lista de links do menu */
     nav ul {
@@ -466,19 +458,6 @@
       background: var(--sand);
     }
 
-    /* Foco de luz que segue o mouse (posição vem das variáveis --px e --py) */
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(28rem 28rem at var(--px, 70%) var(--py, 30%), #ECD2A9aa, transparent 70%);
-      pointer-events: none;
-    }
-
-    body.hc .hero::before {
-      display: none;
-    }
-
     /* Duas colunas: texto à esquerda, imagens à direita */
     .hero .wrap {
       display: grid;
@@ -502,36 +481,6 @@
       transition: transform .3s;
     }
 
-    /* Cada letra "pula" ao passar o mouse */
-    .wordmark span:hover {
-      transform: translateY(-.08em) rotate(-4deg);
-    }
-
-    /* Animação de entrada: cada letra sobe com um pequeno atraso (--i = posição) */
-    .js .wordmark span {
-      animation: rise .9s cubic-bezier(.2, .8, .2, 1) both;
-      animation-delay: calc(var(--i) * 70ms);
-    }
-
-    @keyframes rise {
-      from {
-        transform: translateY(60%) rotate(5deg);
-        opacity: 0;
-      }
-    }
-
-    .hero h1 {
-      font-size: clamp(1.5rem, 3.2vw, 2.3rem);
-      font-weight: 500;
-      max-width: 26ch;
-      letter-spacing: -.02em;
-      margin: 0 0 1rem;
-    }
-
-    .hero .lead {
-      max-width: 50ch;
-      margin: 0 0 1.75rem;
-    }
 
     /* Linha dos dois botões do hero */
     .cta-row {
